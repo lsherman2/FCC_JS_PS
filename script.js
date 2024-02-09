@@ -14,5 +14,9 @@ const specialDef = document.getElementById("special-defense");
 const speed = document.getElementById("speed");
 
 const inputValidation = () => {
-
+  if (searchInput.value === "") {
+    alert("Please enter a pokemon or valid id");
+  }
 };
+
+searchBtn.addEventListener("click", inputValidation);
