@@ -15,8 +15,18 @@ const speed = document.getElementById("speed");
 
 const inputValidation = () => {
   if (searchInput.value === "") {
-    alert("Please enter a pokemon or valid id");
+    alert("Pokémon not found");
   }
+  getPokemon(searchInput.value);
 };
+
+const getPokemon = (name) => {
+  fetch(`https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${name}`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => "Pokémon not found");
+}
 
 searchBtn.addEventListener("click", inputValidation);
