@@ -26,6 +26,7 @@ const inputValidation = () => {
 
   const promise = getPokemon(nameId);
   displayPokemon(promise);
+  types.innerText = '';
 };
 
 const getPokemon = async (name) => {
@@ -40,7 +41,6 @@ const getPokemon = async (name) => {
 const displayPokemon = (promise) => {
   promise.then((res) => res.json())
     .then((data) => {
-      console.log(data);
       pokeName.innerText = data.name.toUpperCase();
       pokeId.innerText = data.id;
       weight.innerText = data.weight;
@@ -54,7 +54,9 @@ const displayPokemon = (promise) => {
 
       sprite.innerHTML = `<img id="sprite" src="${data.sprites.front_default}">`
 
-      types.innerText = data.types;
+      data.types.forEach((cont) => {
+        types.innerHTML += `<p>${cont.type.name.toUpperCase()}</p>`;
+      });
     })
 }
 
