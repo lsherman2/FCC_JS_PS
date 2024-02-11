@@ -17,28 +17,24 @@ const inputValidation = () => {
   if (searchInput.value === "") {
     alert("Pokémon not found");
   }
-  getPokemon(searchInput.value);
+  const promise = getPokemon(searchInput.value);
+  displayPokemon(promise);
 };
 
-const getPokemon = (name) => {
-  const arr = [];
-  fetch(`https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${name}`)
-    .then((res) => {
-      if (!res.ok) {
-        throw "Pokémon not found";
-      } else {
-        res.json();
-      }
-    })
+const getPokemon = async (name) => {
+  const res = await fetch(`https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${name}`);
+  if (!res.ok) {
+    alert("Pokémon not found");
+  } else {
+    return res;
+  }
+};
+
+const displayPokemon = (promise) => {
+  promise.then((res) => res.json())
     .then((data) => {
-      arr = data;
+      pokeName.innerText = data.name.toUpperCase();
     })
-    .catch((err) => alert(err));
-    return arr
-};
-
-const displayPokemon = (arr) => {
-  
 }
 
 searchBtn.addEventListener("click", inputValidation);
