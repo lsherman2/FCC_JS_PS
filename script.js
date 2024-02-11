@@ -21,12 +21,24 @@ const inputValidation = () => {
 };
 
 const getPokemon = (name) => {
+  const arr = [];
   fetch(`https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${name}`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
+    .then((res) => {
+      if (!res.ok) {
+        throw "Pokémon not found";
+      } else {
+        res.json();
+      }
     })
-    .catch((err) => "Pokémon not found");
+    .then((data) => {
+      arr = data;
+    })
+    .catch((err) => alert(err));
+    return arr
+};
+
+const displayPokemon = (arr) => {
+  
 }
 
 searchBtn.addEventListener("click", inputValidation);
