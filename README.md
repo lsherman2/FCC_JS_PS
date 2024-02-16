@@ -1,4 +1,4 @@
-# Do you know Pokémon? Then come on down to Pokémon Searching
+# Do you know Pokémon? Then come on down to Pokémon Searching!
 
 On my journey to learn the secrets of JS, https://www.freecodecamp.org/learn offered me this challenge!
 
